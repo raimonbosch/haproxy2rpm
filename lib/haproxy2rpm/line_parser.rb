@@ -3,7 +3,7 @@ module Haproxy2Rpm
 
     def initialize(line)
       @line = line
-      @parts = line.split("\s")
+      @parts = line.split("haproxy")[1].split("\s")
     end
 
     def tq
