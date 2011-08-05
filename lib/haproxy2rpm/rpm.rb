@@ -25,7 +25,7 @@ module Haproxy2Rpm
     def process_and_send(line)
       message = message_parser.call(line)
       if(message)
-        request_recorder.call(message_parser.call(line))
+        request_recorder.call(message)
       else
         Haproxy2Rpm.logger.warn "Parser returned an empty message from line #{line}"
       end
