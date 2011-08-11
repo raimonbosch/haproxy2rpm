@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v 0.0.9
+
+* Support syslog message format (Knut Nesheim)
+
 ## v 0.0.8
 
 * config file similar to unicorn.rb
