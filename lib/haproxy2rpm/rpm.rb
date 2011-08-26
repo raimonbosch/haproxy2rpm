@@ -23,10 +23,10 @@ module Haproxy2Rpm
     end
     
     def process_and_send(line)
-      message = message_parser.call(line)
-      if(message)
-        request_recorder.call(message)
-      else
+      begin
+        message = message_parser.call(line)
+      	request_recorder.call(message)
+      rescue URI::InvalidURIError
         Haproxy2Rpm.logger.warn "Parser returned an empty message from line #{line}"
       end
     end
@@ -60,7 +60,7 @@ module Haproxy2Rpm
         end
 
         record_transaction(request.tr / rpm_number_unit, params)
-        Haproxy2Rpm.logger.debug "RECORDING (transaction): #{params.inspect}"
+        Haproxy2Rpm.logger.debug "RECORDING (transaction) #{request.http_path}: #{params.inspect}"
         result = queue_time_stats_engine.record_data_point(request.tw / rpm_number_unit)
         Haproxy2Rpm.logger.debug "RECORDING (data point): wait time #{request.tw}, #{result.inspect}"
       end
