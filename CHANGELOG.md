@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## v 0.0.10
+
+* Do not crash when an exception occurs during URI parsing (Knut
+  Nesheim)
+
 ## v 0.0.9
 
 * Support syslog message format (Knut Nesheim)
