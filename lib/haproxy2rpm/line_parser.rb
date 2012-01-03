@@ -2,13 +2,7 @@ module Haproxy2Rpm
   class LineParser
 
     def initialize(line)
-      @line = line
-
-      if @line.match "haproxy"
-        @parts = @line.split("haproxy")[1].split("\s")
-      else
-        @parts = @line.split("\s")
-      end
+      @parts = line.split("\s")
     end
 
     def tq
@@ -32,16 +26,16 @@ module Haproxy2Rpm
     end
 
     def status_code
-      @status_code ||= @parts[6].to_i
+      @status_code ||= @parts[5].to_i
     end
 
     # we need to chop \"
     def http_method
-      @http_method ||= @parts[13][1..-1]
+      @http_method ||= @parts[12][1..-1]
     end
 
     def uri
-      @uri ||= URI.parse(@parts[14])
+      @uri ||= URI.parse(@parts[13])
     end
 
     def http_path
@@ -59,7 +53,7 @@ module Haproxy2Rpm
     private
 
     def response_times
-      @response_times ||= @parts[5].split("/")
+      @response_times ||= @parts[4].split("/")
     end
   end
 end
