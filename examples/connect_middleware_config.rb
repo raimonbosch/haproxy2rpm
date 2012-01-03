@@ -1,7 +1,7 @@
 class NodeJsLineParser
 
   def initialize(line)
-     @parts = @line.split("\s")
+     @parts = line.split("\s")
   end
 
   def response_time
