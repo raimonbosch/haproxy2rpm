@@ -18,7 +18,7 @@ module Haproxy2Rpm
       header = timestamp + " " + hostname
       tag = '(?<tag>[a-zA-Z_\-\/\.0-9\[\]]+)'
       message = "(?<message>[ -~]+)"  # ascii 32 to 126
-      re = "^#{pri}#{header} #{tag}: #{message}"
+      re = "^#{pri}#{header} #{tag}:\s*#{message}"
 
       if RUBY_VERSION =~ /^1\.8/
         # Ruby 1.8 doesn't support named captures
@@ -31,8 +31,10 @@ module Haproxy2Rpm
 
     def receive_data(data)
       match = parse_data(data)
-      Haproxy2Rpm.logger.debug "RECEIVED (syslog): #{match[0]}"
-      Haproxy2Rpm.rpm.process_and_send(match[5] || "")
+      puts match.inspect
+      message = match ? match[5] : ""
+      Haproxy2Rpm.logger.debug "RECEIVED (syslog): #{data}"
+      Haproxy2Rpm.rpm.process_and_send(message)
     end
 
     def parse_data(data)
