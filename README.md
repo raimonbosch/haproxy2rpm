@@ -27,6 +27,10 @@ Tell haproxy to log to syslog. e.g:
 
 Check the examples folder
 
+## Node.js support
+
+Check the examples folder
+
 ## Supported RPM features
 
 * Response times in application server
@@ -46,6 +50,7 @@ Tested in production
 
 Passing manual integration test with test logs
 
+* mri-1.9.3
 * mri-1.9.2-p180
 * ree-1.8.7-2011.03
 * mri-1.8.7-p33

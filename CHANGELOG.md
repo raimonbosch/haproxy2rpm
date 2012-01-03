@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## v 0.1.0
+
+* Make Syslog parsing independent from haproxy
+* Examples on how to use it with node.js and connect including a simple
+  node.js profiler
+
 ## v 0.0.10
 
 * Do not crash when an exception occurs during URI parsing (Knut
