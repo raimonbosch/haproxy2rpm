@@ -1,3 +1,8 @@
+#
+# Expected format: Method Uri Status Time
+#
+# GET /test 200 2
+#
 class NodeJsLineParser
 
   def initialize(line)
