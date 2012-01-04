@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v 0.1.1
+
+* BUGFIX: hostnames with hyphens e.g s-app-1 break the syslog parser
+
 ## v 0.1.0
 
 * Make Syslog parsing independent from haproxy
