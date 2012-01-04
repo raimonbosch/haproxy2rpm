@@ -31,9 +31,10 @@ module Haproxy2Rpm
 
     def receive_data(data)
       match = parse_data(data)
-      puts match.inspect
       message = match ? match[5] : ""
       Haproxy2Rpm.logger.debug "RECEIVED (syslog): #{data}"
+      Haproxy2Rpm.logger.debug "PARSED DATA (syslog): #{match.inspect}"
+      Haproxy2Rpm.logger.debug "PARSED PAYLOAD (syslog): #{message}"
       Haproxy2Rpm.rpm.process_and_send(message)
     end
 
