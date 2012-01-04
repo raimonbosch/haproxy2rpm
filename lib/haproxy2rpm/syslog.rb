@@ -14,7 +14,7 @@ module Haproxy2Rpm
       second = "(?:[0-5][0-9])"
       time = [hour, minute, second].join(":")
       timestamp = "(?<timestamp>#{month} #{day} #{time})"
-      hostname = "(?<hostname>[A-Za-z0-9_.:]+)"
+      hostname = "(?<hostname>[A-Za-z0-9_.:\-]+)"
       header = timestamp + " " + hostname
       tag = '(?<tag>[a-zA-Z_\-\/\.0-9\[\]]+)'
       message = "(?<message>[ -~]+)"  # ascii 32 to 126
