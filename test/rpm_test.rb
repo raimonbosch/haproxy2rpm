@@ -33,6 +33,7 @@ class RpmTest < Test::Unit::TestCase
     end
     
     should 'record the controller metric' do
+      @instance.routes = [{:pattern => %r{^/user/check$}, :target => '/user/check'}]
       NewRelic::Agent.expects(:record_transaction).with(anything, has_entry('metric', 'Controller/user/check'))
       @instance.process_and_send(log_entry(:http_path => "/user/check"))
     end
@@ -41,6 +42,13 @@ class RpmTest < Test::Unit::TestCase
       @instance.routes = [{:pattern => %r{^/[0-9]+/update$}, :target => '/user/update'}]
       NewRelic::Agent.expects(:record_transaction).with(anything, has_entry('metric', 'Controller/user/update'))
       @instance.process_and_send(log_entry(:http_path => "/49339032093/update"))
+    end
+
+    should 'fallback to default route when unknown' do
+      @instance.routes = []
+      @instance.default_route = '/default'
+      NewRelic::Agent.expects(:record_transaction).with(anything, has_entry('metric', 'Controller/default'))
+      @instance.process_and_send(log_entry(:http_path => "/unknown/route"))
     end
         
     should 'record the queue time' do

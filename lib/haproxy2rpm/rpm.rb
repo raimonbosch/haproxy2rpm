@@ -2,6 +2,7 @@ module Haproxy2Rpm
   class Rpm
     
     attr_accessor :routes, :queue_time_stats_engine, :stats_engine
+    attr_writer :default_route
     
     def initialize(options = {})
       agent_options = {:log => Haproxy2Rpm.logger}
@@ -21,7 +22,11 @@ module Haproxy2Rpm
     def config
       self
     end
-    
+
+    def default_route
+      @default_route ||= '/default'
+    end
+
     def process_and_send(line)
       begin
         message = message_parser.call(line)
@@ -88,7 +93,7 @@ module Haproxy2Rpm
           return route[:target]
         end
       end
-      path
+      default_route
     end
   end
 end

@@ -37,6 +37,11 @@ haproxy is generally a bit higher. When you have many slow clients, it
 is significantely higher. For more information about the values haproxy
 provides, refer to the [manual](http://code.google.com/p/haproxy-docs/wiki/TimingEvents).
 
+## The issue of the default route
+
+When haproxy2rpm does not find a route, it will record it under a
+default name so that NewRelic is not flooded with millions of routes. You can provide by setting 'config.default_route'. 
+
 ## Node.js support
 
 Check the examples folder
