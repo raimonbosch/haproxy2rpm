@@ -27,6 +27,16 @@ Tell haproxy to log to syslog. e.g:
 
 Check the examples folder
 
+
+## Problems with haproxy timers
+
+Slow clients (e.g mobile clients over an edge connection) influence the
+measurements haproxy returns. The same happens for requests that do send
+a lot of data (e.g POST/PUT). In that case, the 'tr' value provided by
+haproxy is generally a bit higher. When you have many slow clients, it
+is significantely higher. For more information about the values haproxy
+provides, refer to the [manual](http://code.google.com/p/haproxy-docs/wiki/TimingEvents).
+
 ## Node.js support
 
 Check the examples folder
