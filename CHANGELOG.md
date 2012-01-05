@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v 0.2.0
+
+* Introducing default route
+
 ## v 0.1.1
 
 * BUGFIX: hostnames with hyphens e.g s-app-1 break the syslog parser
